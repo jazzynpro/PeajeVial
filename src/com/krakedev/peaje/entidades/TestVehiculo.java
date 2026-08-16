@@ -1,5 +1,8 @@
 package com.krakedev.peaje.entidades;
 
+import com.krakedev.peaje.servicios.EstacionPeaje;
+import com.krakedev.peaje.util.ImpresorUtil;
+
 public class TestVehiculo {
 
 	public static void main(String[] args) {
@@ -12,9 +15,25 @@ public class TestVehiculo {
 		
 		//Asociar objetos mediante composicion
 		vehiculo.setPropietario(conductor);
-		vehiculo.setTag(null);
+		vehiculo.setTag(tag);
 		//Imprimir
 		vehiculo.imprimir();
+		//Ejecutar ImporesotUtil
+		ImpresorUtil.imprimirVehiculo(vehiculo);
+		
+		//Metodo probar Estacion peaje
+		EstacionPeaje estacion = new EstacionPeaje();
+		//Recargar Tag
+		estacion.recargarTag(tag, 10);
+		System.out.print("Saldo recargado: "+tag.getSaldo());
+		//Cobrar Peaje
+		estacion.cobrarPeaje(vehiculo);
+		System.out.println("Saldo despues de cobrar peaje: " + tag.getSaldo());
+		
+		
+		
+		
+		
 	}
-
+		
 }
